@@ -1,0 +1,103 @@
+{% include "header.twig" %}
+
+<!-- Header -->
+{% include "design/module_header.twig" %}
+
+<!-- Menu -->
+{% include "nav.twig" %}
+
+<!-- Banner -->
+{% embed "design/module_banner.twig" %}
+    {% block logo %}
+        <img class="icon" src="images/logo.png">
+    {% endblock %}
+
+    {% block head %}
+        <h2>WhiteStar Systems</h2>
+    {% endblock %}
+
+    {% block sub %}
+        <p>Another free + fully responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+    {% endblock %}
+{% endembed %}
+
+<!-- Wrapper -->
+<section id="wrapper">
+
+    {% embed "design/module_spotlight.twig" with { style: "style1", id: "welcome" } %}
+        {% block image %}
+            <a href="#" class="image"><img src="images/welcome_nexus.png" alt="Welcome Demo"/></a>
+        {% endblock %}
+
+        {% block content %}
+            <h2 class="major">Welcome</h2>
+            <p>Track visitors and their primary objective for their visit to your office,
+                co-working space, workshop, or other open space. After their visit, poll
+                guests with tailored survey implements to allow for continuous improvement
+                or your space and/or services. Welcome also allows for tracking of hourly
+                employees, like you might find at a University Space.</p>
+            <a href="#" class="special">Learn more</a>
+        {% endblock %}
+    {% endembed %}
+
+    {% embed "design/module_spotlight.twig" with { style: "alt style2", id: "msmon" } %}
+        {% block image %}
+            <a href="#" class="image"><img src="images/ms-mon.png" alt="Mediasite Demo"/></a>
+        {% endblock %}
+
+        {% block content %}
+            <h2 class="major">Mediasite<span class="small">&reg;</span> Recorder Monitor</h2>
+            <p>Monitor your fleet of Mediasite&reg; Recorders to ensure maximum up-time and reliability.
+                Configurable to send emails to your team, or use the modular plugin style architecture
+                to integrate with your existing issue tracking system.</p>
+            <a href="#" class="special">Learn more</a>
+        {% endblock %}
+    {% endembed %}
+
+    {% embed "design/module_spotlight.twig" with { style: "style3", id: "vims" } %}
+        {% block image %}
+            <a href="#" class="image"><img src="images/video-inv.png" alt="Video Inventory Demo"/></a>
+        {% endblock %}
+
+        {% block content %}
+            <h2 class="major">Inventory Management</h2>
+            <p>Keep track of who is using your equipment, and make sure that items come back in good condition.
+                Generate reports based on what items are frequently in use, as well as printable transaction
+                records for auditing and bookkeeping.</p>
+            <a href="#" class="special">Learn more</a>
+        {% endblock %}
+    {% endembed %}
+</section>
+
+<!-- Footer -->
+{% embed "design/module_footer.twig" %}
+    {% block content %}
+        <h2 class="major">Get in touch</h2>
+        <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce
+            tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in
+            tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+        <form method="post" action="#">
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name"/>
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email"/>
+            </div>
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="4"></textarea>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" value="Send Message"/></li>
+            </ul>
+        </form>
+        <ul class="contact">
+            <li class="fa-envelope"><a href="mailto:info@whitestar.systems">info@whitestar.systems</a></li>
+            <li class="fa-github"><a href="https://github.com/ws-systems">@ws-systems</a></li>
+        </ul>
+    {% endblock %}
+{% endembed %}
+
+{% include "footer.twig" %}
