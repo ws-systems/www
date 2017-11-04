@@ -12,6 +12,15 @@ import javax.inject.Singleton;
 import java.util.Map;
 
 /**
+ * Manage Secrets in the Vault.
+ * Connection and authentication settings for the vault are set via Environment Variables to prevent them from being
+ * included in the code base accidentally.
+ * <p>
+ * VAULT_ADDR = Vault Address, including protocol (HTTP/S)
+ * VAULT_ROLE = For authentication via AppRole, Role ID
+ * VAULT_SECRET = AppRole Secret
+ * WWW_APP = App (Secret Key) Name in Vault
+ *
  * @author Tom Paulus
  * Created on 9/30/17.
  */
@@ -45,18 +54,49 @@ public class Secret {
         }
     }
 
+    /**
+     * Get a Secret String from the Default App Name
+     *
+     * @param secretName {@link String} Parameter Name
+     * @return {@link String} Secret Value
+     */
     public String getSecret(String secretName) {
         return getSecret(mAppName, secretName, String.class);
     }
 
+    /**
+     * Get a Secret from the Default App Name
+     *
+     * @param secretName {@link String} Parameter Name
+     * @param type       {@link T} Retrieved Object Type
+     * @param <T>        Retrieved Object Type
+     * @return {@link T} Secret Value
+     */
     public <T> T getSecret(String secretName, Class<T> type) {
         return getSecret(mAppName, secretName, type);
     }
 
+    /**
+     * Get a Secret String from a given app name
+     *
+     * @param appName    {@link String} App Name
+     * @param secretName {@link String} Parameter Name
+     * @return {@link String} Secret Value
+     */
     public String getSecret(String appName, String secretName) {
         return getSecret(appName, secretName, String.class);
     }
 
+
+    /**
+     * Get a Secret String from a given app name
+     *
+     * @param appName    {@link String} App Name
+     * @param secretName {@link String} Parameter Name
+     * @param type       {@link T} Retrieved Object Type
+     * @param <T>        Retrieved Object Type
+     * @return {@link T} Secret Value
+     */
     public <T> T getSecret(String appName, String secretName, Class<T> type) {
         try {
             String response = vault.logical()
@@ -72,6 +112,13 @@ public class Secret {
 
     }
 
+    /**
+     * Set a Secret Value of a given app
+     *
+     * @param appName {@link String} App Name
+     * @param secret  {@link Map} Key, Value Mappings
+     * @return {@link LogicalResponse} Vault Response
+     */
     public LogicalResponse setSecret(String appName, Map<String, Object> secret) {
         final Gson gson = new Gson();
 
@@ -94,7 +141,13 @@ public class Secret {
         }
     }
 
-    public LogicalResponse deleteSecret(String appName) {
+    /**
+     * Delete an App from the Vault
+     *
+     * @param appName {@link String } App Name
+     * @return {@link LogicalResponse} Vault Response
+     */
+    LogicalResponse deleteSecret(String appName) {
         log.warn(String.format("Deleting Secret %s", appName));
         try {
             return vault.logical().delete("secret/" + appName);

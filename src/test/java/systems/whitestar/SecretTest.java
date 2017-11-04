@@ -14,6 +14,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 /**
+ * Test Vault IO Methods
+ *
  * @author Tom Paulus
  * Created on 9/30/17.
  */
