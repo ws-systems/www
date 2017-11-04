@@ -13,8 +13,8 @@ import java.io.IOException;
  * @author Tom Paulus
  * Created on 10/28/17.
  */
-public class Index extends HttpServlet {
-    private static final String TEMPLATE_PATH = "/WEB-INF/templates/index.twig";
+public class Mediasite extends HttpServlet {
+    private static final String TEMPLATE_PATH = "/WEB-INF/templates/ms-mon.twig";
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
     @Override
