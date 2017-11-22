@@ -1,4 +1,8 @@
-{% include "header.twig" %}
+{% embed "header.twig" %}
+    {% block page_assets %}
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    {% endblock %}
+{% endembed %}
 
 <!-- Header -->
 {% include "design/module_header.twig" %}
@@ -76,7 +80,8 @@
         <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce
             tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in
             tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-        <form method="post" action="#">
+        <form onsubmit="submitContact(); return false;" id="contact-form">
+            <input type="hidden" name="check-nonce" value="{{ contact_verification_nonce }}">
             <div class="field">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name"/>
@@ -89,9 +94,14 @@
                 <label for="message">Message</label>
                 <textarea name="message" id="message" rows="4"></textarea>
             </div>
-            <ul class="actions">
-                <li><input type="submit" value="Send Message"/></li>
-            </ul>
+            <div class="actions row">
+                <div class="6u"><input type="submit" value="Send Message"/></div>
+                <div class="field 6u">
+                    <label for="check">{{ contact_verification_number1 }} + {{ contact_verification_number2 }}
+                        = </label>
+                    <input type="text" title="Are You Human?" name="check"/>
+                </div>
+            </div>
         </form>
         <ul class="contact">
             <li class="fa-envelope"><a href="mailto:info@whitestar.systems">info@whitestar.systems</a></li>
@@ -100,4 +110,8 @@
     {% endblock %}
 {% endembed %}
 
-{% include "footer.twig" %}
+{% embed "footer.twig" %}
+    {% block page_assets %}
+        <script src="/assets/js/index.js" type="application/javascript"></script>
+    {% endblock %}
+{% endembed %}

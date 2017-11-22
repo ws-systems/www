@@ -6,6 +6,7 @@ import com.bettercloud.vault.VaultException;
 import com.bettercloud.vault.response.AuthResponse;
 import com.bettercloud.vault.response.LogicalResponse;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import lombok.extern.log4j.Log4j;
 
 import javax.inject.Singleton;
@@ -27,14 +28,14 @@ import java.util.Map;
 @Singleton
 @Log4j
 public class Secret {
+    static Vault vault = null;
     private static Secret secret = null;
-    private static Vault vault = null;
     private String mVaultAddr;
     private String mRoleId;
     private String mSecretId;
     private String mAppName;
 
-    private Secret() throws VaultException {
+    Secret() throws VaultException {
         mVaultAddr = System.getenv("VAULT_ADDR");
         if (mVaultAddr.endsWith("/")) mVaultAddr = mVaultAddr.substring(0, mVaultAddr.length() - 2);
         mRoleId = System.getenv("VAULT_ROLE");
@@ -103,13 +104,53 @@ public class Secret {
                     .read("secret/" + appName)
                     .getData().get(secretName);
 
-            return new Gson().fromJson(response, type);
+            try {
+                return new Gson().fromJson(response, type);
+            } catch (JsonSyntaxException e) {
+                //noinspection unchecked
+                return (T) response;
+            }
 
         } catch (VaultException e) {
             log.error(String.format("Secret with name \"%s\" in app \"%s\" is not defined", secretName, appName));
             throw new RuntimeException(e);
         }
 
+    }
+
+    /**
+     * Get all secrets for the default application
+     *
+     * @return {@link Map} Secret Map
+     */
+    public Map<String, String> getApplication() {
+        return getApplication(mAppName);
+    }
+
+    /**
+     * Get all secrets for the default application
+     *
+     * @return {@link Map} Secret Map
+     */
+    public Map<String, String> getApplication(String appName) {
+        try {
+            return vault.logical()
+                    .read("secret/" + appName)
+                    .getData();
+        } catch (VaultException e) {
+            log.error(String.format("App \"%s\" is not defined", appName));
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Set a Secret Value of the default app
+     *
+     * @param secret {@link Map} Key, Value Mappings
+     * @return {@link LogicalResponse} Vault Response
+     */
+    public LogicalResponse setSecret(Map<String, Object> secret) {
+        return setSecret(mAppName, secret);
     }
 
     /**
