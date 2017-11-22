@@ -115,6 +115,7 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-.jruby
-.sass-cache
 /src/main/webapp/assets/css/
+node_modules
+src/main/webapp/assets
+/.sass-cache/

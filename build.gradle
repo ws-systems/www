@@ -1,5 +1,7 @@
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.8'
+    id 'com.moowork.node' version '1.2.0'
+    id 'com.moowork.gulp' version '1.2.0'
 }
 
 group 'systems.whitestar'
@@ -15,53 +17,30 @@ repositories {
     jcenter()
 }
 
-configurations {
-    jruby
-}
-
-ext {
-    gemsDir = file('.jruby/gems')
-}
-
-task installGems(type: JavaExec) {
-    outputs.dir gemsDir
-
-    classpath = configurations.jruby
-    main = "org.jruby.Main"
-    args "-S gem install -i $gemsDir --no-rdoc --no-ri compass ".tokenize()
-
-    doFirst {
-        gemsDir.mkdirs()
-    }
-}
-
 war {
     archiveName 'ws-www.war'
 }
 
-ext {
-    cssDir = file("src/main/webapp/assets/css/")
-    sassDir = file("src/main/webapp/assets/sass/")
-    imagesDir = file("src/main/webapp/assets/images/")
-    javascriptsDir = file("src/main/webapp/assets/js/")
+gulp {
+    // Set the directory where gulpfile.js should be found
+    workDir = file("${project.projectDir}/src/main/webapp")
+
+    // Whether colors should output on the terminal
+    colors = true
+
+    // Whether output from Gulp should be buffered - useful when running tasks in parallel
+    bufferOutput = false
 }
 
-task compileSass(type: JavaExec) {
-    outputs.dir cssDir
-    inputs.files installGems
-    inputs.dir sassDir
-    inputs.dir imagesDir
-    inputs.dir javascriptsDir
+node {
+    workDir = file("${project.projectDir}/src/main/webapp/")
+    nodeModulesDir = file("${project.projectDir}/src/main/webapp/")
+    npmWorkDir = file("${project.buildDir}/npm")
+    yarnWorkDir = file("${project.buildDir}/yarn")
+}
 
-    classpath = configurations.jruby
-    main = "org.jruby.Main"
-    args "-S compass compile --sass-dir $sassDir --css-dir $cssDir --images-dir $imagesDir --javascripts-dir $javascriptsDir --relative-assets".tokenize()
-    environment 'GEM_PATH', gemsDir
-    environment 'PATH', "$gemsDir/bin"
-
-    doFirst {
-        cssDir.mkdirs()
-    }
+clean.doFirst {
+    delete "${project.projectDir}/src/main/webapp/assets"
 }
 
 lombok {
@@ -69,9 +48,6 @@ lombok {
 }
 
 dependencies {
-    // Sass & Build
-    jruby 'org.jruby:jruby-complete:9.1.14.0'
-
     // Logging
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
     compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
@@ -96,3 +72,8 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+installGulp.dependsOn npm_install
+installGulp.dependsOn npm_update
+gulp_build.dependsOn installGulp
+compileJava.dependsOn gulp_build
