@@ -1,4 +1,10 @@
+/* line 1, ../sass/addons.sass */
 sup.small {
-    font-size: .60rem;
-    vertical-align: text-top;
+  font-size: 0.6rem;
+  vertical-align: text-top;
+}
+
+/* line 5, ../sass/addons.sass */
+#footer form input[type="submit"] {
+  margin-top: 1em;
 }
