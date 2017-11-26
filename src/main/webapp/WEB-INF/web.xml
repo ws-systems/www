@@ -51,14 +51,18 @@
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Error</servlet-name>
+        <servlet-class>systems.whitestar.Routes.Error</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/assets/*</url-pattern>
+        <servlet-name>Error</servlet-name>
+        <url-pattern>/error</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/images/*</url-pattern>
+        <url-pattern>/assets/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -77,6 +81,10 @@
         <servlet-name>API</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <location>/error</location>
+    </error-page>
 
     <listener>
         <listener-class>systems.whitestar.Init</listener-class>
