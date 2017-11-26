@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 @Log4j
 @Path("contact")
 public class Contact {
-    private static final String CONACT_MESSAGE_TEMPLATE = "From: %s <%s>\n Subject: %s\n\n %s";
+    private static final String CONTACT_MESSAGE_TEMPLATE = "From: %s <%s>\n Subject: %s\n\n %s";
     private static final String TOPIC_SUBJECT = "Contact Form Response from whitestar.systems";
 
     @POST
@@ -59,13 +59,13 @@ public class Contact {
                     .build();
         }
 
-        Runnable publishMessage = () -> {
-            String publishMsg = String.format(CONACT_MESSAGE_TEMPLATE,
-                    name,
-                    email,
-                    TOPIC_SUBJECT,
-                    message);
+        final String publishMsg = String.format(CONTACT_MESSAGE_TEMPLATE,
+                name,
+                email,
+                TOPIC_SUBJECT,
+                message);
 
+        Runnable postMessageToSNS = () -> {
             log.info(String.format("Posting message from %s <%s> to Contact Form Topic", name, email));
             final String messageId = SNS.getInstance().publishToTopic(
                     Secret.getInstance().getSecret("sns.contact_topic.arn"),
@@ -73,6 +73,7 @@ public class Contact {
 
             log.debug("Message ID - " + messageId);
         };
+        postMessageToSNS.run();
 
         return Response.accepted().build();
     }
