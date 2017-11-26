@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -19,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Index extends HttpServlet {
     private static final String TEMPLATE_PATH = "/WEB-INF/templates/index.twig";
-    private static final int RANDOM_MINUMUM = 1;
+    private static final int RANDOM_MINIMUM = 1;
     private static final int RANDOM_MAXIMUM = 15;
     private static ThreadLocalRandom random = null;
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
@@ -47,7 +46,7 @@ public class Index extends HttpServlet {
     }
 
     private static int randomInt() {
-        return Math.abs(ThreadLocalRandom.current().nextInt(RANDOM_MINUMUM, RANDOM_MAXIMUM + 1));
+        return Math.abs(ThreadLocalRandom.current().nextInt(RANDOM_MINIMUM, RANDOM_MAXIMUM + 1));
     }
 
     @Override
