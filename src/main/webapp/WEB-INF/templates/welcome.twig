@@ -1,0 +1,81 @@
+{% extends 'product.twig' %}
+{% set page_classes = 'product welcome' %}
+
+{% set name  = "Welcome" %}
+{% set tagline = "Visitor Tracking and Analytics" %}
+
+{% block content -%}
+    <p>
+        Welcome allows for the tracking of visitors and their primary objective for their visit to your office,
+        co-working space, workshop, or other open space. After their visit, modules like FollowUp poll guests with
+        tailored survey implements to allow for continuous improvement or your space and/or services. Additional
+        modules like Quick Clock allows for time tracking, often used for hourly staff.
+    </p>
+    <p>
+        Monitor and administer your space (and hourly staff if using QuickClock) via our comprehensive Admin
+        Dashboard<sup>*</sup>. See real-time analytics of who is using your space and what the hot topics are for
+        the day. Hourly staff can view their automatically updated time sheet, and request modifications/alterations
+        all from within the admin dashboard. Assign various roles to your users, from staff member, to shift lead,
+        all the way to full administrator. This level of permissions allows for your data to remain secure, while
+        allowing your team to get their work done as quickly and effortlessly as possible.
+    </p>
+    <p>
+        Client interfaces can be adapted to integrate with various third party data providers, like
+        <a href="https://acuityscheduling.com" target="_blank">Acuity</a> for appointment management. Client interface
+        is easily adapted to fit the needs of your space using our easy to adapt JSON template.
+    </p>
+
+    <pre>
+        <code>
+            [
+              {
+                "pageID": "list",
+                "pageHead": "What do you hope to accomplish today?",
+                "buttons": [
+                  {
+                    "title": "Use the ParScore Machines",
+                    "action": "finish('Use ParScore', 'Walk In')"
+                  },
+                  {
+                    "title": "Meet with an Instructional Designer",
+                    "action": "showPage('ID-Topics')"
+                  },
+                  {
+                    "title": "Learn how to use a new technology",
+                    "action": "finish('Attend a workshop')"
+                  },
+                  {
+                    "title": "Help with Blackboard",
+                    "action": "finish('Meet an ID', 'Blackboard')"
+                  },
+                  {
+                    "title": "Something that is not listed here",
+                    "action": "showPage('Other')"
+                  }
+                ]
+              }
+            ]
+        </code>
+    </pre>
+
+    <div class="box alt">
+        <div class="row uniform">
+            <div class="6u"><span class="image fit">
+                    <img src="/assets/images/welcome-landing.png" alt="" data-lightbox="welcome-product"/>
+                </span></div>
+            <div class="6u$"><span class="image fit">
+                    <img src="/assets/images/welcome-qc-landing.png" alt="" data-lightbox="welcome-product"/>
+                </span></div>
+            {# TODO Admin Dashboard Screenshots #}
+            <div class="6u"><span class="image fit">
+                    <img src="/assets/images/pic01.jpg" alt="" data-lightbox="welcome-product"/>
+                </span></div>
+            <div class="6u$"><span class="image fit">
+                    <img src="/assets/images/pic02.jpg" alt="" data-lightbox="welcome-product"/>
+                </span></div>
+        </div>
+    </div>
+
+    <p><sup>*</sup> Admin Dashboard will be in Early Access Beta in Early 2018. Inquire with your support representative
+        for more information in regard to becoming a part of the beta program.</p>
+{%- endblock %}
