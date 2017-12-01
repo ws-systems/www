@@ -7,6 +7,7 @@ import com.bettercloud.vault.VaultException;
 import lombok.extern.log4j.Log4j;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Extends Secret Class to deal with AWS Access Keys and Secrets.
@@ -17,8 +18,10 @@ import java.util.Map;
  */
 @Log4j
 public class AWSSecrets extends Secret {
-    private static AWSSecrets secret = null;
+    private static final int CONSISTENCY_DELAY = 15;
 
+    private static AWSSecrets secret = null;
+    private static String lastAccessKey = "";
 
     private AWSSecrets() throws VaultException {
         super();
@@ -46,6 +49,17 @@ public class AWSSecrets extends Secret {
         Map<String, String> response = vault.logical()
                 .read("aws/creds/" + role)
                 .getData();
+
+        if (!response.get("access_key").equals(lastAccessKey)) {
+            lastAccessKey = response.get("access_key");
+            try {
+                // Access credentials are eventually consistent (this prevents 403s)
+                TimeUnit.SECONDS.sleep(CONSISTENCY_DELAY);
+            } catch (InterruptedException e) {
+                log.error("Could not delay for eventual consistency - " +
+                        "Requests to AWS may return 403 as a result", e);
+            }
+        }
 
         return new AWSCredentialsProvider() {
             @Override

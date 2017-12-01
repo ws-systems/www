@@ -8,6 +8,8 @@ import com.amazonaws.services.sns.model.*;
 import com.bettercloud.vault.VaultException;
 import lombok.extern.log4j.Log4j;
 
+import java.util.Map;
+
 /**
  * Wrapper for AWS SNS Subscription Service
  *
@@ -57,6 +59,22 @@ public class SNS {
         log.debug("CreateTopicRequest - " + snsClient.getCachedResponseMetadata(createTopicRequest));
 
         return createTopicResult.getTopicArn();
+    }
+
+    /**
+     * Get the attributes of an AWS SNS Topic
+     *
+     * @param topicArn {@link String} Topic ARN
+     * @return {@link Map} Topic Attributes
+     */
+    public Map<String, String> getTopic(final String topicArn) {
+        log.debug("Getting Topic Attributes - " + topicArn);
+        GetTopicAttributesRequest getTopicAttributesRequest = new GetTopicAttributesRequest(topicArn);
+        GetTopicAttributesResult getTopicAttributesResult = snsClient.getTopicAttributes(getTopicAttributesRequest);
+
+        log.debug("CreateTopicRequest - " + snsClient.getCachedResponseMetadata(getTopicAttributesRequest));
+
+        return getTopicAttributesResult.getAttributes();
     }
 
     /**

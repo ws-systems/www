@@ -101,6 +101,15 @@ public class Init implements ServletContextListener {
             log.debug("Default Subscriber - " + DEFAULT_SUBSCRIBER);
 
             SNS.getInstance().subscribeToTopic(topicARN, "email", DEFAULT_SUBSCRIBER);
+        } else {
+            Map<String, String> attributes = SNS.getInstance().getTopic(topicArn);
+
+            if (attributes == null || attributes.size() == 0) {
+                log.error("Could not retrieve attributes from SNS Topic");
+                throw new RuntimeException("Could not initialize SNS Client");
+            }
+
+            log.debug(String.format("Topic has %s subscribers", attributes.get("SubscriptionsConfirmed")));
         }
     }
 }
