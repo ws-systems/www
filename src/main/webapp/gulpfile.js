@@ -52,7 +52,7 @@ gulp.task('sweet-alerts', function () {
 });
 
 gulp.task('lightbox', function () {
-    return gulp.src('./node_modules/lightbox2/dist/js/lightbox.min.js')
+    return gulp.src('./node_modules/lightbox2/dist/js/lightbox.min.*')
         .pipe(gulp.dest(config.outputDir + '/js')) &&
         gulp.src('./node_modules/lightbox2/dist/images/**/*')
             .pipe(gulp.dest(config.outputDir + '/images')) &&
