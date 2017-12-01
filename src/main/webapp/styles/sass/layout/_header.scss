@@ -87,13 +87,8 @@
     }
   }
 
-  @include breakpoint(medium) {
-    @include padding(12em, 3em, (0, 0, _size(wrapper-edges, medium) * 0.5, 0));
-    margin-bottom: (_size(wrapper-edges, medium) * -1);
-
-    .inner {
-      width: 100%;
-    }
+  &.transparent {
+    background-color: transparentize(desaturate(lighten(_palette(bg), 3), 1.5), 0.25);
   }
 
   @include breakpoint(small) {
