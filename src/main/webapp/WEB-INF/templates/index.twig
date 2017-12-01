@@ -20,8 +20,7 @@
     {% endblock %}
 
     {% block sub %}
-        {# TODO Sub Head Text #}
-        <p>Another free + fully responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+        <p>Tailored web solutions designed for today!</p>
     {% endblock %}
 {% endembed %}
 
@@ -77,10 +76,9 @@
 {% embed "design/module_footer.twig" %}
     {% block content %}
         <h2 class="major">Get in touch</h2>
-        {# TODO Body Text #}
-        <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce
-            tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in
-            tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+        <p>We would love to hear from you! Want to know more about one of our products, schedule a demo, or are
+        interested in a custom build solution? Use the form below to drop us a line, and we will get back to you
+        as soon as possible (usually within one business day). </p>
         <form onsubmit="submitContact(); return false;" id="contact-form">
             <input type="hidden" name="check-nonce" value="{{ contact_verification_nonce }}">
             <div class="field">
@@ -99,11 +97,13 @@
                 <div class="small validation-help-text">Please enter your message.</div>
             </div>
             <div class="actions row">
-                <div class="6u"><input type="submit" value="Send Message"/></div>
-                <div class="field 6u">
+                <div class="6u">
+                    <label></label>
+                    <input type="submit" value="Send Message"/></div>
+                <div class="field 6u$">
                     <label for="check">{{ contact_verification_number1 }} + {{ contact_verification_number2 }}
                         = </label>
-                    <input type="number" title="Are You Human?" name="check"/>
+                    <input type="text" title="Are You Human?" name="check"/>
                     <div class=" small validation-help-text">Please enter the sum of the numbers above.</div>
                 </div>
             </div>
