@@ -38,16 +38,26 @@ function contactFormPreFlight() {
 }
 
 function submitContact() {
+    // Disable Send Button
+    var $contact = $('#contact-form');
+    var $submitButton = $contact.find('button[type="submit"]');
+
+    $submitButton.addClass('disabled');
+    $submitButton.attr("disabled", "disabled");
+    $submitButton.data("previous-text", $submitButton.text());
+    $submitButton.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>');
+
     if (contactFormPreFlight()) // Only Submit form if passes Pre Flight
         $.ajax({
             type: "POST",
             url: "/api/contact",
-            data: $("#contact-form").serialize(), // serializes the form's elements.
+            data: $contact.serialize(), // serializes the form's elements.
             error: function (data) {
                 if (data.status === 406) {
                     // Human Verification Failed
                     var $verificationField = $('#contact-form').find('input[name="check"]');
-                    $verificationField.addClass("verification-error");
+                    $verificationField.siblings('.validation-help-text').show();
+                    $verificationField.addClass('validation-error');
                     $verificationField.val('');
                 } else if (data.status === 400) {
                     // Incomplete Form
@@ -60,9 +70,28 @@ function submitContact() {
             },
             success: function (data) {
                 // Show Success Message and Hide Form
-                alert("Cool!");
-            }
+                var $form = $("#contact-form");
+                var $conf_message = $form.siblings(".completed_message");
+
+                $form.stop(true).fadeOut("fast", function () {
+                    $conf_message.fadeIn("slow");
+                    $form[0].reset(); // Reset Form Contents
+                });
+
+                return false;
+            },
+            always: renableSend()
         });
+    else renableSend();
+}
+
+function renableSend() {
+    var $contact = $('#contact-form');
+    var $submitButton = $contact.find('button[type="submit"]');
+
+    $submitButton.removeClass('disabled');
+    $submitButton.removeAttr("disabled");
+    $submitButton.text($submitButton.data("previous-text"));
 }
 
 function validate(email) {

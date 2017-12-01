@@ -50,3 +50,22 @@ sup.small {
     margin-bottom: -6.5em;
   }
 }
+
+#footer {
+  .inner {
+    .completed_message {
+      display: none;
+      text-align: center;
+
+      padding: 1em 0;
+
+      .fa {
+        color: _palette(fg-bold);
+      }
+
+      .message {
+        padding-top: 1.5rem;
+      }
+    }
+  }
+}

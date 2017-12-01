@@ -101,15 +101,20 @@
             <div class="actions row">
                 <div class="6u">
                     <label></label>
-                    <input type="submit" value="Send Message"/></div>
+                    <button type="submit">Send Message</button>
+                </div>
                 <div class="field 6u$">
                     <label for="check">{{ contact_verification_number1 }} + {{ contact_verification_number2 }}
                         = </label>
                     <input type="text" title="Are You Human?" name="check"/>
-                    <div class=" small validation-help-text">Please enter the sum of the numbers above.</div>
+                    <div class="small validation-help-text">Please enter the sum of the numbers above.</div>
                 </div>
             </div>
         </form>
+        <div class="completed_message">
+            <i class="fa fa-paper-plane fa-5x" aria-hidden="true"></i>
+            <h3 class="message">Message Sent!</h3>
+        </div>
         <ul class="contact">
             <li class="fa-envelope"><a href="mailto:info@whitestar.systems">info@whitestar.systems</a></li>
             <li class="fa-github"><a href="https://github.com/ws-systems" target="_blank">@ws-systems</a></li>
