@@ -32,8 +32,7 @@ gulp.task('css', function (cb) {
                 outputStyle: 'compressed',
                 includePaths: [
                     config.stylesPath,
-                    './node_modules/font-awesome/scss',
-                    './node_modules/lightbox2/dist/css/lightbox.min.css'
+                    './node_modules/font-awesome/scss'
                 ]
             }).on('error', sass.logError),
             autoprefixer(),
@@ -55,7 +54,10 @@ gulp.task('sweet-alerts', function () {
 gulp.task('lightbox', function () {
     return gulp.src('./node_modules/lightbox2/dist/js/lightbox.min.js')
         .pipe(gulp.dest(config.outputDir + '/js')) &&
-        gulp.src('./node_modules/lightbox2/dist/images/**/*').pipe(gulp.dest(config.outputDir + '/images'));
+        gulp.src('./node_modules/lightbox2/dist/images/**/*')
+            .pipe(gulp.dest(config.outputDir + '/images')) &&
+        gulp.src('./node_modules/lightbox2/dist/css/lightbox.min.css')
+            .pipe(gulp.dest(config.outputDir + '/css'));
 });
 
 gulp.task('js', function (cb) {
