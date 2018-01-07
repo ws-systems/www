@@ -18,10 +18,10 @@
   "homepage": "https://github.com/ws-systems/www#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
+    "gulp-autoprefixer": "^4.1.0",
     "gulp-concat": "^2.6.1",
-    "gulp-filter": "^5.0.1",
-    "gulp-imagemin": "^4.0.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-imagemin": "^4.1.0",
     "gulp-notify": "^3.0.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
@@ -30,6 +30,6 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "lightbox2": "^2.10.0",
-    "sweetalert": "^2.0.8"
+    "sweetalert": "^2.1.0"
   }
 }
