@@ -1,0 +1,50 @@
+{% extends 'product.twig' %}
+{% set page_classes = 'product ms-mon' %}
+
+{% set name  = "Mediasite Recorder Management" %}
+{% set tagline = "Recorder Monitoring and Alerting" %}
+
+{% block content -%}
+    <p>Monitor your fleet of Mediasite&reg; Recorders to ensure maximum up-time and reliability.
+        Configurable to send emails to your team, or use the modular plugin style architecture
+        to integrate with your existing issue tracking system.</p>
+
+    <p>Maintaining maximum uptime of your lecture capture infrastructure is imperative, and Recorder Monitor
+        allows you to ensure that your users have the best experience possible by being aware of issues with
+        recorders in almost real-time<sup>*</sup>. Notify staff, technicians, and/or issue tracking system
+        to ensure timely action and investigation of potential issues, all from a clean, easy to use Web UI.</p>
+
+    <p>On site deployment is easy via Docker Containers, which allow you to deploy the monitoring agent to you
+        exiting on-premises infrastructure, and can run on existing server hardware, or devices as inexpensive as
+        a RaspberryPi, thanks to the portability of Docker Containers and the lightweight architecture of the
+        Monitoring Agent.</p>
+
+    <div class="box alt">
+        <div class="row uniform">
+            <div class="6u"><span class="image fit">
+                    <a href="/assets/images/ms-mon-home.png" data-lightbox="msmon-product">
+                        <img src="/assets/images/ms-mon-home.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="6u$"><span class="image fit">
+                    <a href="/assets/images/ms-mon-users.png" data-lightbox="msmon-product">
+                    <img src="/assets/images/ms-mon-users.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="6u"><span class="image fit">
+                    <a href="/assets/images/ms-mon-rates.png" data-lightbox="msmon-product">
+                        <img src="/assets/images/ms-mon-rates.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="6u$"><span class="image fit">
+                    <a href="/assets/images/wms-mon-integra.png" data-lightbox="msmon-product">
+                    <img src="/assets/images/ms-mon-integra.png" alt=""/>
+                    </a>
+                </span></div>
+        </div>
+    </div>
+
+    <div class="footnotes">
+        <p><sup>*</sup> monitoring frequency can be customized by the client via the Web Interface.</p>
+    </div>
+{%- endblock %}
