@@ -10,30 +10,16 @@ var gulp = require('gulp'),
 var config = {
     stylesPath: 'styles/sass',
     jsPath: 'styles/js',
-    localLibsPath: 'styles/libs',
     imagesPath: 'images',
     outputDir: 'assets'
 };
 
-gulp.task('font-awesome-css', function (cb) {
+gulp.task('font-awesome', function (cb) {
     pump([
-        gulp.src(config.localLibsPath + '/fa/*'),
-        filter('**/*.css'),
-        concat("fontawesome.css"),
-        gulp.dest(config.outputDir + '/css')
+        gulp.src('./node_modules/font-awesome/fonts/**.*'),
+        gulp.dest(config.outputDir + '/fonts')
     ], cb);
 });
-
-gulp.task('font-awesome-js', function (cb) {
-    pump([
-        gulp.src(config.localLibsPath + '/fa/*'),
-        filter('**/*.js'),
-        uglify(),
-        concat('fontawesome.js'),
-        gulp.dest(config.outputDir + '/js')
-    ], cb);
-});
-
 
 gulp.task('jquery', function (cb) {
     pump([
@@ -58,7 +44,7 @@ gulp.task('lightbox', function () {
             .pipe(gulp.dest(config.outputDir + '/css'));
 });
 
-gulp.task('libs', gulp.parallel('jquery', 'font-awesome-css', 'font-awesome-js', 'sweet-alerts', 'lightbox'));
+gulp.task('libs', gulp.parallel('jquery', 'font-awesome', 'sweet-alerts', 'lightbox'));
 
 
 gulp.task('images', function () {
