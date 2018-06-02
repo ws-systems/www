@@ -88,6 +88,6 @@ gulp.task('watch', function () {
     gulp.watch([config.imagesPath + '/**/*'], ['images']);
 });
 
-gulp.task('build', ['images', 'css', 'jquery', 'sweet-alerts', 'lightbox', 'js-ie', 'js', 'font-awesome']);
+gulp.task('build', gulp.series('images', 'css', 'jquery', 'sweet-alerts', 'lightbox', 'js-ie', 'js', 'font-awesome'));
 
-gulp.task('default', ['build']);
+gulp.task('default', gulp.parallel('build'));
