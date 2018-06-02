@@ -1,6 +1,7 @@
 package systems.whitestar.Routes;
 
 import com.google.common.hash.Hashing;
+import org.jtwig.resource.exceptions.ResourceNotFoundException;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -17,10 +18,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created on 10/28/17.
  */
 public class Index extends HttpServlet {
-    private static final String TEMPLATE_PATH = "/WEB-INF/templates/index.twig";
+    private static final String TEMPLATE_PATH = "/WEB-INF/templates%s.twig";
+    private static final String INDEX = "/index";
     private static final int RANDOM_MINIMUM = 1;
     private static final int RANDOM_MAXIMUM = 15;
-    private static ThreadLocalRandom random = null;
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
     /**
@@ -35,14 +36,6 @@ public class Index extends HttpServlet {
             sum += i;
         }
         return sum;
-    }
-
-    private static ThreadLocalRandom getRandom() {
-        if (random == null) {
-            random = ThreadLocalRandom.current();
-            random.setSeed(System.currentTimeMillis());
-        }
-        return random;
     }
 
     private static int randomInt() {
@@ -61,7 +54,14 @@ public class Index extends HttpServlet {
                 .hashString(Integer.toString(sum(randomInt)), StandardCharsets.UTF_8)
                 .toString());
 
-        renderer.dispatcherFor(TEMPLATE_PATH)
-                .render(request, response);
+        String requestedPage = request.getRequestURI();
+        requestedPage = !requestedPage.equals("/") ? requestedPage: INDEX; // Index page if is Blank
+
+        try {
+            renderer.dispatcherFor(String.format(TEMPLATE_PATH, requestedPage))
+                    .render(request, response);
+        } catch (ResourceNotFoundException e) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
     }
 }

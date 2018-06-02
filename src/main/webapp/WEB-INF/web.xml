@@ -14,40 +14,20 @@
         <servlet-name>Index</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>About</servlet-name>
-        <servlet-class>systems.whitestar.Routes.About</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>About</servlet-name>
+        <servlet-name>Index</servlet-name>
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Inventory</servlet-name>
-        <servlet-class>systems.whitestar.Routes.Inventory</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>Inventory</servlet-name>
+        <servlet-name>Index</servlet-name>
         <url-pattern>/inventory</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Mediasite</servlet-name>
-        <servlet-class>systems.whitestar.Routes.Mediasite</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>Mediasite</servlet-name>
-        <url-pattern>/mediasite</url-pattern>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/ms-mon</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Welcome</servlet-name>
-        <servlet-class>systems.whitestar.Routes.Welcome</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>Welcome</servlet-name>
+        <servlet-name>Index</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
 
