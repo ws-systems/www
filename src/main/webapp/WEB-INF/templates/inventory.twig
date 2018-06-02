@@ -1,0 +1,75 @@
+{% extends 'product.twig' %}
+{% set page_classes = 'product video-inv' %}
+
+{% set name  = "Inventory Managemnt" %}
+{% set tagline = "Asset Tracking and Reporting" %}
+
+{% block content -%}
+    <p>Keep track of who is using your equipment, and make sure that items come back in good condition.
+        Generate reports based on what items are frequently in use, as well as printable transaction
+        records for auditing and bookkeeping.</p>
+
+    {# TODO More Copy on this page #}
+
+    <h3 class="major">Client Interface</h3>
+    <div class="box alt">
+        <div class="row uniform">
+            <div class="12u$"><span class="image fit">
+                    <a href="/assets/images/vims-home.png" data-lightbox="vims-product-client">
+                        <img src="/assets/images/vims-home.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="6u"><span class="image fit">
+                    <a href="/assets/images/vims-checkout.png" data-lightbox="vims-product-client">
+                        <img src="/assets/images/vims-checkout.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="6u$"><span class="image fit">
+                    <a href="/assets/images/vims-checkin.png" data-lightbox="vims-product-client">
+                        <img src="/assets/images/vims-checkin.png" alt=""/>
+                    </a>
+                </span></div>
+        </div>
+    </div>
+
+    <h3 class="major">Admin Interface</h3>
+    <div class="box alt">
+        <div class="row uniform">
+            <div class="12u$"><span class="image fit">
+                    <a href="/assets/images/vims-admin-home.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-admin-home.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="4u"><span class="image fit">
+                    <a href="/assets/images/vims-admin-items.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-admin-items.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="4u"><span class="image fit">
+                    <a href="/assets/images/vims-admin-macros.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-admin-macros.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="4u$"><span class="image fit">
+                    <a href="/assets/images/vims-admin-cats.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-admin-cats.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="4u"><span class="image fit">
+                    <a href="/assets/images/vims-admin-txs.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-admin-txs.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="4u"><span class="image fit">
+                    <a href="/assets/images/vims-admin-users.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-admin-users.png" alt=""/>
+                    </a>
+                </span></div>
+            <div class="4u$"><span class="image fit">
+                    <a href="/assets/images/vims-tx-record.png" data-lightbox="vims-product-admin">
+                        <img src="/assets/images/vims-tx-record.png" alt=""/>
+                    </a>
+                </span></div>
+        </div>
+    </div>
+{%- endblock %}

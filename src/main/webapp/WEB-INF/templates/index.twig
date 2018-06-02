@@ -55,7 +55,7 @@
             <p>Monitor your fleet of Mediasite Recorders to ensure maximum up-time and reliability.
                 Configurable to send emails to your team, or use the modular plugin style architecture
                 to integrate with your existing issue tracking system.</p>
-            <a href="/mediasite" class="special">Learn more</a>
+            <a href="/ms-mon" class="special">Learn more</a>
         {% endblock %}
     {% endembed %}
 
@@ -81,40 +81,7 @@
         <p>We would love to hear from you! Want to know more about one of our products, schedule a demo, or are
             interested in a custom build solution? Use the form below to drop us a line, and we will get back to you
             as soon as possible (usually within one business day). </p>
-        <form onsubmit="submitContact(); return false;" id="contact-form">
-            <input type="hidden" name="check-nonce" value="{{ contact_verification_nonce }}">
-            <div class="field">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name"/>
-                <div class="small validation-help-text">Please enter your name.</div>
-            </div>
-            <div class="field">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email"/>
-                <div class="small validation-help-text">Please enter a valid email address.</div>
-            </div>
-            <div class="field">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="4"></textarea>
-                <div class="small validation-help-text">Please enter your message.</div>
-            </div>
-            <div class="actions row">
-                <div class="6u">
-                    <label></label>
-                    <button type="submit">Send Message</button>
-                </div>
-                <div class="field 6u$">
-                    <label for="check">{{ contact_verification_number1 }} + {{ contact_verification_number2 }}
-                        = </label>
-                    <input type="text" title="Are You Human?" name="check"/>
-                    <div class="small validation-help-text">Please enter the sum of the numbers above.</div>
-                </div>
-            </div>
-        </form>
-        <div class="completed_message">
-            <i class="fa fa-paper-plane fa-5x" aria-hidden="true"></i>
-            <h3 class="message">Message Sent!</h3>
-        </div>
+        {% include "contact_form.twig" %}
         <ul class="contact">
             <li class="fa-envelope"><a href="mailto:info@whitestar.systems">info@whitestar.systems</a></li>
             <li class="fa-github"><a href="https://github.com/ws-systems" target="_blank">@ws-systems</a></li>
@@ -122,8 +89,4 @@
     {% endblock %}
 {% endembed %}
 
-{% embed "footer.twig" %}
-    {% block page_assets %}
-        <script src="/assets/js/index.js" type="application/javascript"></script>
-    {% endblock %}
-{% endembed %}
+{% include "footer.twig" %}

@@ -1,0 +1,27 @@
+{% extends 'product.twig' %}
+{% set page_classes = 'about' %}
+
+{% set name  = "About Us" %}
+{% set tagline = "" %}
+
+{% block content -%}
+    <p>
+        WhiteStar Systems strives to develop innovative solutions to solve the problems you and your organization face
+        everyday, be it asset tracking, operations tools, or getting an overview of your office and clients who visit
+        you on a daily basis. While WhiteStar Systems is committed to open source, we offer a Saas solution to all of our
+        clients, allowing them to get the latest updates and the comfort in knowing that if something should go wrong,
+        skilled engineers are already on the case.
+    </p>
+    <p>
+        As much as possible, we open source our work under either the MIT License, or the Creative Commons license and
+        share our work and engage with the community via <a href="https://github.com/ws-systems" target="_blank">
+        GitHub</a>. We sadly cannot share everything with the world, but we post as much as we can, since much of our
+        work is built off of existing open source projects.
+    </p>
+    <p>
+        We would love to work with you and see how we can your life a little easier and/or efficient. Drop us a line
+        via the contact form below and we will be in touch. We look forward to hearing from you!
+    </p>
+
+    {% include "contact_form.twig" %}
+{%- endblock %}
